@@ -1,0 +1,72 @@
+﻿@model R54_Ex_06_Mvc_Evidence.Models.Applicant
+@{
+    ViewBag.Title = "Delete";
+    var a = Model;
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Are you sure to delete</h3>
+       
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th></th>
+                    <th>Applicant Name</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Ready to work anywhere?</th>
+                   
+                </tr>
+            </thead>
+            <tbody>
+               
+                    <tr style="vertical-align:middle">
+                        <td><img src="~/Pictures/@a.Picture" class="img-thumbnail rounded-circle" style="width:50px" /></td>
+                        <td>@a.ApplicantName</td>
+                        <td>@a.Gender</td>
+                        <td>@a.BirthDate.ToString("yyyy-MM-dd")</td>
+                        <td>@(a.IsReadyToWorkAnyWhere ? "Yes": "No")</td>
+                       
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="5">
+                            <h4>Qualifications</h4>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Degree</th>
+                                        <th>Institute</th>
+                                        <th>Passing year</th>
+                                        <th>Result</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var q in Model.Qualifications)
+                                    {
+                                        <tr>
+                                            <td>@q.Degree</td>
+                                            <td>@q.Institute</td>
+                                            <td>@q.PassingYear</td>
+                                            <td>@q.Result</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                
+            </tbody>
+        </table>
+        @using (Html.BeginForm())
+            {
+                @Html.HiddenFor(x => x.ApplicantId);
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            </div>
+            }
+    </div>
+</div>

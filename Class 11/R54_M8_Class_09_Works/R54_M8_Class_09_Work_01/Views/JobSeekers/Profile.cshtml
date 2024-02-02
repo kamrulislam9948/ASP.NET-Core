@@ -1,0 +1,75 @@
+﻿@model JobSeekerInputModel
+@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Profile" asp-controller="JobSeekers" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group row mb-1">
+                <h3>Update your information</h3>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="FullName" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="FullName" class="form-control form-control-sm" />
+                    <span class="text-danger" style="font-size:small" asp-validation-for="FullName"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="ContactNumber" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="ContactNumber" class="form-control form-control-sm" />
+                    <span class="text-danger" style="font-size:small" asp-validation-for="ContactNumber"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="BirthDate" class="col-form-label col-2 text-end"></label>
+                <div class="col-4">
+                    <input type="text" asp-for="BirthDate" class="form-control form-control-sm" />
+                    <span class="text-danger" style="font-size:small" asp-validation-for="BirthDate"></span>
+                </div>
+            </div>
+
+            <div class="form-group row mb-1">
+
+                <div class="col-4 offset-2 text-end">
+                    <div class="form-check">
+                        <button type="submit" class="btn btn-primary btn-sm">Update</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@section styles 
+{    
+    <link href="~/libs/datepicker/css/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+    <script src="~/libs/datepicker/js/bootstrap-datepicker.js"></script>
+    <script>
+        $("#BirthDate").datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        if ($("#BirthDate").val() != ""){
+            $("#BirthDate").val(formatDate($("#BirthDate").val()));
+        }
+        function formatDate(dt) {
+            console.log(dt);
+            var d = new Date(dt);
+            console.log(d);
+            return [
+                d.getFullYear(),
+                (d.getMonth() + 1).toString().padStart(2, '0'),
+                d.getDate().toString().padStart(2, '0')
+            ].join('-');
+        }
+    </script>
+}
+

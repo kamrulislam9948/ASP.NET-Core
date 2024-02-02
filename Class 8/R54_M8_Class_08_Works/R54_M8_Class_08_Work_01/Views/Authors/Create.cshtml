@@ -1,0 +1,42 @@
+﻿@model Author
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" asp-controller="Authors" method="post">
+            <h3>Add new author</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger offset-2"></div>
+            <div class="form-group row mb-1">
+                <label asp-for="Name" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    <input asp-for="Name" class="form-control form-control-sm" />
+                    <span asp-validation-for="Name" class="text-danger" style="font-size:small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Email" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    <input asp-for="Email" class="form-control form-control-sm" />
+                    <span asp-validation-for="Email" class="text-danger" style="font-size:small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                
+                <div class="col-4 offset-2 text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12">
+        <a asp-action="Index" asp-controller="Authors" class="btn btn-link">Return to list</a>
+    </div>
+</div>
+@section scripts
+{
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/validate/jquery.validate.js"></script>
+    <script src="~/libs/validate/jquery.validate.unobtrusive.js"></script>
+}

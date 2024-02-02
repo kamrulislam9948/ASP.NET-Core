@@ -1,0 +1,36 @@
+﻿@model R54_Ex_06_Mvc_Evidence.ViewModels.ApplicantEditModel
+<div class="form-group row mb-1">
+    @Html.LabelFor(x => x.ApplicantName, new { @class = "col-form-label col-form-label-sm col-2" })
+    <div class="col-6">
+        @Html.TextBoxFor(x => x.ApplicantName, new { @class = "form-control form-control-sm" })
+        @Html.ValidationMessageFor(x => x.ApplicantName, "", new { @class = "text-danger", style = "font-size:x-small" })
+    </div>
+</div>
+<div class="form-group row mb-1">
+    @Html.LabelFor(x => x.Gender, new { @class = "col-form-label col-form-label-sm col-2" })
+    <div class="col-6">
+        @Html.EnumDropDownListFor(x => x.Gender, new { @class = "form-select form-select-sm" })
+        @Html.ValidationMessageFor(x => x.Gender, "", new { @class = "text-danger", style = "font-size:x-small" })
+    </div>
+</div>
+<div class="form-group row mb-1">
+    @Html.LabelFor(x => x.BirthDate, new { @class = "col-form-label col-form-label-sm col-2" })
+    <div class="col-6">
+        @Html.TextBoxFor(x => x.BirthDate, new { @class = "form-control form-control-sm", type = "date" })
+        @Html.ValidationMessageFor(x => x.BirthDate, "", new { @class = "text-danger", style = "font-size:x-small" })
+    </div>
+</div>
+<div class="form-group row mb-1">
+    @Html.LabelFor(x => x.AppliedFor, new { @class = "col-form-label col-form-label-sm col-2" })
+    <div class="col-6">
+        @Html.TextBoxFor(x => x.AppliedFor, new { @class = "form-control form-control-sm" })
+        @Html.ValidationMessageFor(x => x.AppliedFor, "", new { @class = "text-danger", style = "font-size:x-small" })
+    </div>
+</div>
+<div class="form-group row mb-1">
+    @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-form-label-sm col-2" })
+    <div class="col-6">
+        @Html.TextBoxFor(x => x.Picture, new { @class = "form-control form-control-sm", type = "file" })
+        @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger", style = "font-size:x-small" })
+    </div>
+</div>

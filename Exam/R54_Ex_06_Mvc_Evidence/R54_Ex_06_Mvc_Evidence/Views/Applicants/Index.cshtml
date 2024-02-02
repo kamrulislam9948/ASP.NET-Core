@@ -1,0 +1,82 @@
+﻿@model IEnumerable<R54_Ex_06_Mvc_Evidence.Models.Applicant>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>Employee List</h3>
+        <div class="d-flex justify-content-end mb-1">
+
+
+            <a href="@Url.Action("Create", "Applicants")" class="btn btn-primary btn-sm">Create New</a>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+                <tr>
+                    <th></th>
+                    <th>Applicant Name</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Ready to work anywhere?</th>
+                    <th>...</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr style="vertical-align:middle">
+                        <td><img src="~/Pictures/@a.Picture" class="img-thumbnail rounded-circle" style="width:50px" /></td>
+                        <td>@a.ApplicantName</td>
+                        <td>@a.Gender</td>
+                        <td>@a.BirthDate.ToString("yyyy-MM-dd")</td>
+                        <td>@(a.IsReadyToWorkAnyWhere ? "Yes": "No")</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Applicants", new {id=a.ApplicantId})" class="btn btn-success btn-sm">Edit</a>
+                            <a href="@Url.Action("Delete", "Applicants", new {id=a.ApplicantId})" class="btn btn-danger btn-sm del">Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="5">
+                            <h4>Qualifications</h4>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Degree</th>
+                                        <th>Institute</th>
+                                        <th>Passing year</th>
+                                        <th>Result</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach(var q in a.Qualifications)
+                                    {
+                                        <tr>
+                                            <td>@q.Degree</td>
+                                            <td>@q.Institute</td>
+                                            <td>@q.PassingYear</td>
+                                            <td>@q.Result</td>
+                                            
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts {
+    <script src="~/Scripts/jquery-3.7.0.js"></script>
+    <script>
+        //$(".del").click(ev => {
+        //    if (!confirm("Are you sure to delete?")) ev.preventDefault();
+        //});
+    </script>
+}
+
+

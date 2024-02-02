@@ -1,0 +1,87 @@
+﻿@model IEnumerable<JobPost>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h3>List Job Posts</h3>
+        <div class="d-flex justify-content-between mb-1">
+            <div style="width:250px">
+               <form id="f" asp-action="index" asp-controller="JobProviders" method="post">
+                    <select name="status" id="status" class="form-select form-select-sm">
+                        <option value="open" selected="@(ViewBag.Status == "open")">Open</option>
+                        <option value="closed" selected="@(ViewBag.Status == "closed")">Closed</option>
+                        <option value="all" selected="@(ViewBag.Status == "all")">All</option>
+
+                    </select>
+               </form>
+            </div>
+            <a asp-controller="JobProviders" asp-action="Create" class="btn btn-outline-primary btn-sm">Create New</a>
+        </div>
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Post</th>
+                    <th>Postion</th>
+                   
+                    <th>Job Location</th>
+                    <th>Last Day to Apply</th>
+                   
+                    <th>Closed?</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model)
+                {
+                    <tr>
+                        <td>@p.JobPostName</td>
+                        <td>@p.Postion</td>
+                       
+                        <td>@p.Location</td>
+                        
+                        <td>@p.LastDayOfSubmission?.ToString("yyyy-MM-dd")</td>
+                        <td class="text-center">
+                            <div class="form-check">
+                                <input data-pk="@p.JobPostId" 
+                                id="isClosed_@p.JobPostId" 
+                                class="form-check-input openclose" 
+                                type="checkbox"
+                                checked="@p.IsClosed"
+                                />
+                               
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section scripts
+{
+    
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script>
+        $("#status").change(function(){
+            //console.log($(this).val());
+            $("#f").submit();
+        });
+        $(".openclose").change(function(){
+            let status =this.checked;
+            let id= $(this).data('pk');
+            $.ajax({
+                type: 'post',
+                url: '/JobProviders/UpdateStatus',
+                dataType: 'json',
+                data: {id:id, status:status},
+                success: r=>{
+                    if(r.success = true){
+                        window.location.reload();
+                    }
+                }
+            })
+        });
+    </script>
+}
+

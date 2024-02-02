@@ -1,0 +1,29 @@
+﻿@model IEnumerable<R54_M8_Class_03_Work_01.Models.Employee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+    <h3>Teachers</h3>
+    <ul>
+        @foreach (var x in Model.OfType<R54_M8_Class_03_Work_01.Models.Teacher>())
+        {
+            <li>@x.Name, @x.Subject</li>
+        }
+    </ul>
+    <h3>Employees</h3>
+    <ul>
+        @foreach (var x in Model.OfType<R54_M8_Class_03_Work_01.Models.RegularEmployee>())
+        {
+            <li>@x.Name, @x.Post</li>
+        }
+    </ul>
+</body>
+</html>

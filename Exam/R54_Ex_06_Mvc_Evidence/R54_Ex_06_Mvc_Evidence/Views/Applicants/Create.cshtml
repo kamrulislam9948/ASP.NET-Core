@@ -1,0 +1,70 @@
+﻿@model R54_Ex_06_Mvc_Evidence.ViewModels.ApplicantViewModel
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        @using (Html.BeginForm("Create", "Applicants", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <h3 class="mb-2">Add new appicant</h3>
+            @Html.Partial("_ApplicantPartial", Model)
+            
+            <div class="col-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Degree</th>
+                            <th>Institute</th>
+                            <th>Passing year</th>
+                            <th>Result</th>
+                            <th>
+                                <button type="submit" class="btn btn-secondary btn-sm" name="act" value="add" formnovalidate>Add</button>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (var i = 0; i < Model.Qualifications.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.TextBoxFor(x => Model.Qualifications[i].Degree, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => Model.Qualifications[i].Degree, "", new { @class = "text-danger" })
+                                   
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => Model.Qualifications[i].Institute, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => Model.Qualifications[i].Institute, "", new { @class = "text-danger" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => Model.Qualifications[i].PassingYear, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => Model.Qualifications[i].PassingYear, "", new { @class = "text-danger" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(x => Model.Qualifications[i].Result, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(x => Model.Qualifications[i].Degree, "", new { @class = "text-danger" })
+                                </td>
+                                <th>
+                                    <button type="submit" class="btn btn-secondary btn-sm" name="act" value="remove_@i" formnovalidate>Remove</button>
+                                </th>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-12 text-end">
+                    <button type="submit" class="btn btn-primary" name="act" value="insert">Save to database</button>
+                </div>
+            </div>
+        }
+    </div>
+    
+</div>
+@section scripts {
+    @Html.Partial("_scripts")    
+}
+

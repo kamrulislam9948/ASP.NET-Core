@@ -1,0 +1,60 @@
+﻿@model BookInputModel
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="Create" asp-controller="Books" method="post">
+            <h3>Add new book</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger offset-2"></div>
+            <div class="form-group row mb-1">
+                <label asp-for="Title" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    <input asp-for="Title" class="form-control form-control-sm" />
+                    <span asp-validation-for="Title" class="text-danger" style="font-size:small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="PublishDate" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    <input asp-for="PublishDate" class="form-control form-control-sm" />
+                    <span asp-validation-for="PublishDate" class="text-danger" style="font-size:small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="CoverPrice" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    <input asp-for="CoverPrice" class="form-control form-control-sm" />
+                    <span asp-validation-for="CoverPrice" class="text-danger" style="font-size:small"></span>
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Authors" class="col-form-label col-form-label-sm col-2 text-end"></label>
+                <div class="col-4">
+                    
+                    @foreach(Author a in ViewBag.Authors)
+                    {
+                        
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="@a.Id" name="Authors">
+                            <label class="form-check-label">
+                               @a.Name
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-4 offset-2 text-end">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-12">
+        <a asp-action="Index" asp-controller="Books" class="btn btn-link">Return to list</a>
+    </div>
+</div>
+

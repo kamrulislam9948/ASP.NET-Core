@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\R56_M8_Class_07_Work_01.props" />
+</Project>

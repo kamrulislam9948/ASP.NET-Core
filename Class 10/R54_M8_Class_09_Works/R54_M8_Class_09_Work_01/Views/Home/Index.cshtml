@@ -1,0 +1,39 @@
+﻿@model IEnumerable<JobPost>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <table class="table table-bordered">
+            <thead class="table-light">
+                <tr>
+                    <th>Post</th>
+                    <th>Postion</th>
+                    <th>Organization</th>
+                    <th>Job Location</th>
+                    <th>Salary</th>
+                    <th>Description</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var p in Model)
+                {
+                    <tr>
+                        <td>@p.JobPostName</td>
+                        <td>@p.Postion</td>
+                        <td>@p.JobProvider?.CompanyName</td>
+                        <td>@p.Location</td>
+                        <td>@p.Salary</td>
+                        <td><span style="max-width:170px" class="d-inline-block text-truncate">@p.Description</span></td>
+                        <td class="text-center">
+                            <a class="btn btn-outline-primary btn-light btn-sm" asp-controller="JobSeekers" asp-action="Apply" asp-route-id="@p.JobPostId">Apply</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "bootstrap@5.3.1",
+      "destination": "wwwroot/libs/boostrap"
+    },
+    {
+      "library": "jquery@3.7.0",
+      "destination": "wwwroot/libs/jquery"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validate@1.19.5",
+      "destination": "wwwroot/libs/validate"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validation-unobtrusive@4.0.0",
+      "destination": "wwwroot/libs/validate/"
+    },
+    {
+      "provider": "cdnjs",
+      "library": "bootstrap-datepicker@1.10.0",
+      "destination": "wwwroot/libs/picker"
+    }
+  ]
+}
